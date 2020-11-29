@@ -1,6 +1,7 @@
 import csv
 import random
 import abc
+import os
 from enum import Enum
 
 
@@ -83,9 +84,15 @@ class Treatment(RandomNumberGenerator):
         return float(random.randint(1, 10))
 
 
-with open('data.csv', mode='w') as patient_file:
-    patient_file = open("data.csv", "w")
-    patient_file.truncate()
+# create database directory
+if not os.path.exists('data'):
+    os.makedirs('data')
+
+# create the csv file database
+with open("data/data.csv", mode='a') as patient_file:
+    patient_file.truncate()  # clean up the data
+
+with open('data/data.csv', mode='w') as patient_file:
     patient_writer = csv.writer(patient_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     headings = []
@@ -93,7 +100,7 @@ with open('data.csv', mode='w') as patient_file:
         headings.append(medical_info.value)
     patient_writer.writerow(headings)
 
-    # random number generator
+    # generate fake patient data
     for i in range(0, 10000):
         patient_writer.writerow([Type1().gen_random_num(), Type2().gen_random_num(), Type3().gen_random_num(),
                                  Type4().gen_random_num(), Type5().gen_random_num(), Type6().gen_random_num(),
