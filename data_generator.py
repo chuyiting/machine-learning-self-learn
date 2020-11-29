@@ -10,7 +10,7 @@ DATABASE_FILE_PATH = DATABASE_PATH + '/data.csv'
 
 
 class MedicalDataType(Enum):
-    TYPE_1 = "DATA1"
+    HEIGHT = "height"
     TYPE_2 = "DATA2"
     TYPE_3 = "DATA3"
     TYPE_4 = "DATA4"

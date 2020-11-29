@@ -27,7 +27,6 @@ class RegressionLine:
 
     def show(self):
         viz_train = plt
-        viz_train.ylim(0, 10)
         viz_train.scatter(self._x_train, self._y_train, color='red')  # scattered data
         viz_train.plot(self._x_train, regressor.predict(self._x_train), color='blue')  # regression line
         viz_train.title('Medical Information VS Treatment (Training set)')
@@ -62,3 +61,4 @@ def view_training_result():
 
 if __name__ == '__main__':
     view_training_result()
+
