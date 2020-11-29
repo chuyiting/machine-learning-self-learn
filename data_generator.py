@@ -5,6 +5,10 @@ import os
 from enum import Enum
 
 
+DATABASE_PATH = 'data'
+DATABASE_FILE_PATH = DATABASE_PATH + '/data.csv'
+
+
 class MedicalDataType(Enum):
     TYPE_1 = "DATA1"
     TYPE_2 = "DATA2"
@@ -85,14 +89,14 @@ class Treatment(RandomNumberGenerator):
 
 
 # create database directory
-if not os.path.exists('data'):
-    os.makedirs('data')
+if not os.path.exists(DATABASE_PATH):
+    os.makedirs(DATABASE_PATH)
 
 # create the csv file database
-with open("data/data.csv", mode='a') as patient_file:
+with open(DATABASE_FILE_PATH, mode='a') as patient_file:
     patient_file.truncate()  # clean up the data
 
-with open('data/data.csv', mode='w') as patient_file:
+with open(DATABASE_FILE_PATH, mode='w') as patient_file:
     patient_writer = csv.writer(patient_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     headings = []
@@ -101,7 +105,7 @@ with open('data/data.csv', mode='w') as patient_file:
     patient_writer.writerow(headings)
 
     # generate fake patient data
-    for i in range(0, 10000):
+    for i in range(0, 10):
         patient_writer.writerow([Type1().gen_random_num(), Type2().gen_random_num(), Type3().gen_random_num(),
                                  Type4().gen_random_num(), Type5().gen_random_num(), Type6().gen_random_num(),
                                  Type7().gen_random_num(), Type8().gen_random_num(), Type9().gen_random_num(),
